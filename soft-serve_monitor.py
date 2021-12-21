@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 
 import os
 import sys
@@ -60,13 +61,34 @@ if __name__ == "__main__":
 if __name__ == '__main__':
     app = Flask(__name__)
 
+# -------------------- Listing repositories in the server -------------------- #
+
+def list_repos_in_server():
+    "Returns a list of all the repositories in the server."
+    return os.listdir(config["repos_path"])
+
+def clone_cmd(repo_name):
+    "From the repository name returns the git command to clone it."
+    prefix = "git clone ssh://"
+    return prefix + config["ss_host"] + ":" + str(config["ss_port"]) + "/" + repo_name
+
+def repos_description():
+    """Generate an list presenting all repositories on the server and a dic
+    of the command to clone them."""
+    ret1 = list_repos_in_server()
+    ret2 = {}
+    for i in ret1:
+        ret2[i] = clone_cmd(i)
+    return ret1, ret2
+
 # --------------------------------- Web page --------------------------------- #
 
 @app.route('/')
 @app.route('/<path:rest>')
 def webpage(rest=None):
     ssh_command = "ssh -p "+str(config["ss_port"])+ " "+config["ss_host"]
-    return render_template("index.html", server_name = config["monitor_name"], ssh_command = ssh_command)
+    repo_list, cmd_dic = repos_description()
+    return render_template("index.html", server_name = config["monitor_name"], ssh_command = ssh_command, repo_list = repo_list, cmd_dic = cmd_dic)
 
 # ---------------------------- Running the server ---------------------------- #
 
