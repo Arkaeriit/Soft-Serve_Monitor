@@ -15,4 +15,26 @@ To tell the web server what files to monitor and how to login to the Soft Serve 
 
 This JSON file should be given as argument when running the Flask server executable.
 
+An example is given as `config.json` in this repository.
+
 ## Running the server
+
+Running this server is as easy as running any other Flask server. I use the following systemd service to run it on [my personal server](https://git.bobignou.red).
+```
+[Unit]
+Description=A soft-serve web interface
+After=network.target
+
+[Service]
+Type=simple
+# Another Type: forking
+User=root
+Group=root
+WorkingDirectory=/srv/data/soft-serve
+ExecStart=/srv/soft-serve/soft-serve_monitor/soft-serve_monitor.py /srv/soft-serve/soft-serve_monitor/config.json
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+```
+
