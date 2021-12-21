@@ -5,11 +5,12 @@
 ## Configuration
 
 To tell the web server what files to monitor and how to login to the Soft Serve server, a JSON configuration file is needed. The JSON file needs the following fields:
-| Field name   | Description                                                   | Example                  |
-|--------------|---------------------------------------------------------------|--------------------------|
-| `ss_host`    | The host name of URL of the Soft Serve server.                | "git.bobignou.red"       |
-| `ss_port`    | The port used by the Soft Serve server.                       | 23231                    |
-| `repos_path` | The path to the folder where the git repositories are located | "/srv/soft-serve/.repos" |
+| Field name     | Description                                                   | Example                  |
+|----------------|---------------------------------------------------------------|--------------------------|
+| `ss_host`      | The host name of URL of the Soft Serve server.                | "git.bobignou.red"       |
+| `ss_port`      | The port used by the Soft Serve server.                       | 23231                    |
+| `repos_path`   | The path to the folder where the git repositories are located | "/srv/soft-serve/.repos" |
+| `monitor_port` | Port uses by the Flask web server.                            | 8080                     |
 
 This JSON file should be given as argument when running the Flask server executable.
 
