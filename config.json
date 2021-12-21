@@ -2,5 +2,6 @@
     "ss_host": "git.bobignou.red",
     "ss_port": 23231,
     "repos_path": "/srv/soft-serve/.repos",
-    "monitor_port": 8080
+    "monitor_port": 8080,
+    "monitor_name": "Bobignou"
 }

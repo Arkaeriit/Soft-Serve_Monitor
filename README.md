@@ -1,4 +1,4 @@
-# Flask Soft Serve monitor
+# Soft Serve monitor
 
 [Soft Sevre](https://github.com/charmbracelet/soft-serve) is a very nice git server. It offers a really nice TUI to browse the repositories on the server. Unfortunately, it does not offers a web interface. Here, I want to try to make a tiny web interface to present the git server and list the repositories there.
 
@@ -11,6 +11,7 @@ To tell the web server what files to monitor and how to login to the Soft Serve 
 | `ss_port`      | The port used by the Soft Serve server.                       | 23231                    |
 | `repos_path`   | The path to the folder where the git repositories are located | "/srv/soft-serve/.repos" |
 | `monitor_port` | Port uses by the Flask web server.                            | 8080                     |
+| `monitor_name` | A name to display to describe the server.                     | Bobignou                 |
 
 This JSON file should be given as argument when running the Flask server executable.
 

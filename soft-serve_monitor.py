@@ -3,6 +3,7 @@
 import os
 import sys
 import json
+from flask import Flask, request, jsonify, render_template, url_for, make_response
 
 # --------------------------------- Constants -------------------------------- #
 
@@ -12,7 +13,7 @@ ERR_FILE_NOT_FOUND = 2
 ERR_JSON           = 3
 ERR_MISSING_KEY    = 3
 
-CONFIG_KEYS = ["ss_host", "ss_port", "repos_path", "monitor_port"]
+CONFIG_KEYS = ["ss_host", "ss_port", "repos_path", "monitor_port", "monitor_name"]
 
 # ------------------------ Opening configuration file ------------------------ #
 
@@ -53,4 +54,22 @@ if __name__ == "__main__":
     config_err, config = open_config()
     if config_err != ERR_OK:
         sys.exit(config_err)
+
+# -------------------------- Preparing server's state ------------------------ #
+
+if __name__ == '__main__':
+    app = Flask(__name__)
+
+# --------------------------------- Web page --------------------------------- #
+
+@app.route('/')
+@app.route('/<path:rest>')
+def webpage(rest=None):
+    ssh_command = "ssh -p "+str(config["ss_port"])+ " "+config["ss_host"]
+    return render_template("index.html", server_name = config["monitor_name"], ssh_command = ssh_command)
+
+# ---------------------------- Running the server ---------------------------- #
+
+if __name__ == '__main__':
+    app.run(port = config["monitor_port"])
 
