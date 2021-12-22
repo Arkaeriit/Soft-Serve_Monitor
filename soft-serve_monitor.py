@@ -89,7 +89,7 @@ def get_file_in_repos(repo_name, filename):
     It the file is found, True and its content are returned. If not,
     False and a random string are returned."""
     goto_repo = "cd "+config["repos_path"]+"/"+repo_name+" && "
-    branch_cmd = os.popen(goto_repo + "git branch --show-current 2> /dev/null")
+    branch_cmd = os.popen(goto_repo + "git rev-parse --abbrev-ref HEAD 2> /dev/null")
     branch = branch_cmd.read().split("\n")[0]
     branch_cmd.close()
     show_cmd = os.popen(goto_repo + "git show "+branch+":"+filename+" 2> /dev/null")
