@@ -5,7 +5,7 @@ import os
 import sys
 import json
 from flask import Flask, render_template
-import misaka
+import markdown
 
 # --------------------------------- Constants -------------------------------- #
 
@@ -119,8 +119,7 @@ def present_repo(repo_name):
     repo_list, cmd_dic = repos_description()
     readme_md = get_readme(repo_name)
     # readme = "test<br>test<br>"
-    md_to_html = misaka.Markdown(misaka.HtmlRenderer(), extensions=("tables", "fenced-code"))
-    readme = md_to_html(readme_md)
+    readme = markdown.markdown(readme_md, extensions=['tables', 'extra'])
     cmd = cmd_dic[repo_name]
     return render_template("repo.html", repo_name = repo_name, cmd = cmd, readme = readme)
 

@@ -5,6 +5,7 @@
 ## Configuration
 
 To tell the web server what files to monitor and how to login to the Soft Serve server, a JSON configuration file is needed. The JSON file needs the following fields:
+
 | Field name     | Description                                                   | Example                  |
 |----------------|---------------------------------------------------------------|--------------------------|
 | `ss_host`      | The host name of URL of the Soft Serve server.                | "git.bobignou.red"       |
@@ -18,6 +19,11 @@ This JSON file should be given as argument when running the Flask server executa
 An example is given as `config.json` in this repository.
 
 ## Running the server
+
+This server depends on the following python libraries:
+* Flask
+* markdown
+You need to install them before being able to run it.
 
 Running this server is as easy as running any other Flask server. I use the following systemd service to run it on [my personal server](https://git.bobignou.red).
 ```
