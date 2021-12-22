@@ -17,6 +17,13 @@ ERR_MISSING_KEY    = 3
 
 CONFIG_KEYS = ["ss_host", "ss_port", "repos_path", "monitor_port", "monitor_name"]
 
+HTLM_STYLE = """
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans&display=swap" rel="stylesheet"> 
+<link rel="stylesheet" href='/static/style.css' />
+"""
+
 # ------------------------ Opening configuration file ------------------------ #
 
 def open_config():
@@ -121,9 +128,9 @@ def present_repo(repo_name):
         cmd = cmd_dic[repo_name]
         readme_md = get_readme(repo_name)
         readme = markdown.markdown(readme_md, extensions=['tables', 'extra'])
-        return render_template("repo.html", repo_name = repo_name, cmd = cmd, readme = readme, server_name = config["monitor_name"])
+        return render_template("repo.html", repo_name = repo_name, cmd = cmd, readme = readme, server_name = config["monitor_name"], style = HTLM_STYLE)
     except KeyError:
-        return render_template("repo_not_found.html", repo_name = repo_name, server_name = config["monitor_name"]), 404
+        return render_template("repo_not_found.html", repo_name = repo_name, server_name = config["monitor_name"], style = HTLM_STYLE), 404
 
 
 # --------------------------------- Web page --------------------------------- #
@@ -132,12 +139,12 @@ def present_repo(repo_name):
 def webpage(rest=None):
     ssh_command = "ssh -p "+str(config["ss_port"])+ " "+config["ss_host"]
     repo_list, cmd_dic = repos_description()
-    return render_template("index.html", server_name = config["monitor_name"], ssh_command = ssh_command, repo_list = repo_list)
+    return render_template("index.html", server_name = config["monitor_name"], ssh_command = ssh_command, repo_list = repo_list, style = HTLM_STYLE)
 
 @app.errorhandler(404)
 def page_not_found(e):
     print(e)
-    return render_template('404.html'), 404
+    return render_template('404.html', style = HTLM_STYLE), 404
 
 # ---------------------------- Running the server ---------------------------- #
 

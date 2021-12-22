@@ -1,0 +1,69 @@
+body {
+    font-family: 'IBM Plex Sans', sans-serif;
+    background: #222831;
+    color: #EEEEEE;
+    margin-top: 50px;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+p {
+    font-size: 1.2em;
+}
+
+h1 {
+    font-size: 2.5em;
+    color: #FFD369;
+}
+
+h2 {
+    font-size: 1.75;
+    color: #C88E00;
+    margin-left: 50px;
+}
+
+h3 {
+    font-size: 1.3em;
+    color: #FFFFFFFF;
+    margin-left: 50px;
+}
+
+.clone_info {
+    background: #202020;
+    color: #888888;
+    font-size: 0.9em;
+    padding: 1.5em;
+    border-radius: 0.5em;
+}
+
+code {
+    font-family: 'IBM Plex Mono', monospace;
+    color: White;
+    background: #393E46;
+    font-size: 0.9em;
+    border-radius: 0.5em;
+    padding: 0.2em;
+}
+
+table {
+    border-collapse: collapse;
+    margin-right: 100px;
+}
+
+th, td {
+    border: 2px solid #C88E00;
+    padding: 5px;
+    text-align: left;
+}
+
+a:link {
+    color: #FFD369;
+}
+
+a:visited {
+    color: #B07500;
+}
+
+a:active {
+    color: #F0F0F0F0;
+}
