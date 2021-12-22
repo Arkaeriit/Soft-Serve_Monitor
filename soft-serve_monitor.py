@@ -81,6 +81,37 @@ def repos_description():
         ret2[i] = clone_cmd(i)
     return ret1, ret2
 
+# ------------------------ Managing list of README.md ------------------------ #
+
+def get_file_in_repos(repo_name, filename):
+    """This function tries to get a file from a repo in its main branch.
+    It the file is found, True and its content are returned. If not,
+    False and a random string are returned."""
+    goto_repo = "cd "+config["repos_path"]+"/"+repo_name+" && "
+    branch_cmd = os.popen(goto_repo + "git branch --show-current 2> /dev/null")
+    branch = branch_cmd.read().split("\n")[0]
+    branch_cmd.close()
+    show_cmd = os.popen(goto_repo + "git show "+branch+":"+filename+" 2> /dev/null")
+    content = show_cmd.read()
+    exit_code = show_cmd.close()
+    return exit_code == None, content
+
+def get_readme(repo_name):
+    """Tries to get README.md or README.txt or README in a repo and if none
+    is found, creates a placeholder one."""
+    file_ok, readme = get_file_in_repos(repo_name, "README.md")
+    if file_ok:
+        return readme
+    file_ok, readme = get_file_in_repos(repo_name, "README.txt")
+    if file_ok:
+        return readme
+    file_ok, readme = get_file_in_repos(repo_name, "README")
+    if file_ok:
+        return readme
+    readme = "# "+repo_name+"\n\n_No README for this repository._\n"
+    return readme
+
+
 # --------------------------------- Web page --------------------------------- #
 
 @app.route('/')
@@ -93,5 +124,8 @@ def webpage(rest=None):
 # ---------------------------- Running the server ---------------------------- #
 
 if __name__ == '__main__':
-    app.run(port = config["monitor_port"])
+    print(get_readme("baseconv"))
+    print(get_readme("devzat"))
+    print(get_readme("skynet"))
+    # app.run(port = config["monitor_port"])
 
