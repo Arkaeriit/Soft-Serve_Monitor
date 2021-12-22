@@ -134,6 +134,11 @@ def webpage(rest=None):
     repo_list, cmd_dic = repos_description()
     return render_template("index.html", server_name = config["monitor_name"], ssh_command = ssh_command, repo_list = repo_list, cmd_dic = cmd_dic)
 
+@app.errorhandler(404)
+def page_not_found(e):
+    print(e)
+    return render_template('404.html'), 404
+
 # ---------------------------- Running the server ---------------------------- #
 
 if __name__ == '__main__':
