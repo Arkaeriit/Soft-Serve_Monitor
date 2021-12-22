@@ -36,6 +36,10 @@ h3 {
     border-radius: 0.5em;
 }
 
+.error_404 {
+    color: #E02020;
+}
+
 code {
     font-family: 'IBM Plex Mono', monospace;
     color: White;
