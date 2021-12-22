@@ -4,7 +4,8 @@
 import os
 import sys
 import json
-from flask import Flask, request, jsonify, render_template, url_for, make_response
+from flask import Flask, render_template
+import misaka
 
 # --------------------------------- Constants -------------------------------- #
 
@@ -111,11 +112,22 @@ def get_readme(repo_name):
     readme = "# "+repo_name+"\n\n_No README for this repository._\n"
     return readme
 
+@app.route("/<string:repo_name>")
+@app.route("/<string:repo_name>/")
+def present_repo(repo_name):
+    "This function renders the webpage presenting a repository."
+    repo_list, cmd_dic = repos_description()
+    readme_md = get_readme(repo_name)
+    # readme = "test<br>test<br>"
+    md_to_html = misaka.Markdown(misaka.HtmlRenderer(), extensions=("tables", "fenced-code"))
+    readme = md_to_html(readme_md)
+    cmd = cmd_dic[repo_name]
+    return render_template("repo.html", repo_name = repo_name, cmd = cmd, readme = readme)
+
 
 # --------------------------------- Web page --------------------------------- #
 
 @app.route('/')
-@app.route('/<path:rest>')
 def webpage(rest=None):
     ssh_command = "ssh -p "+str(config["ss_port"])+ " "+config["ss_host"]
     repo_list, cmd_dic = repos_description()
@@ -124,8 +136,5 @@ def webpage(rest=None):
 # ---------------------------- Running the server ---------------------------- #
 
 if __name__ == '__main__':
-    print(get_readme("baseconv"))
-    print(get_readme("devzat"))
-    print(get_readme("skynet"))
-    # app.run(port = config["monitor_port"])
+    app.run(port = config["monitor_port"])
 
