@@ -117,11 +117,13 @@ def get_readme(repo_name):
 def present_repo(repo_name):
     "This function renders the webpage presenting a repository."
     repo_list, cmd_dic = repos_description()
-    readme_md = get_readme(repo_name)
-    # readme = "test<br>test<br>"
-    readme = markdown.markdown(readme_md, extensions=['tables', 'extra'])
-    cmd = cmd_dic[repo_name]
-    return render_template("repo.html", repo_name = repo_name, cmd = cmd, readme = readme)
+    try:
+        cmd = cmd_dic[repo_name]
+        readme_md = get_readme(repo_name)
+        readme = markdown.markdown(readme_md, extensions=['tables', 'extra'])
+        return render_template("repo.html", repo_name = repo_name, cmd = cmd, readme = readme, server_name = config["monitor_name"])
+    except KeyError:
+        return render_template("repo_not_found.html", repo_name = repo_name, server_name = config["monitor_name"]), 404
 
 
 # --------------------------------- Web page --------------------------------- #

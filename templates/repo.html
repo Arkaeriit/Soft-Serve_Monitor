@@ -1,2 +1,15 @@
-<p>Clone the repo <strong>{{ repo_name }}</strong> with the command <code> {{ cmd }} </code></p>
-{{ readme|safe }}
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>{{ repo_name }} </title>
+        <meta charset="utf-8">
+        <meta name="description" content="The repo {{ repo_name }} on the {{ server_name }} Git server.">
+    </head>
+
+    <body>
+        <p>Clone the repository <strong>{{ repo_name }}</strong> with the command <code> {{ cmd }} </code></p>
+        {{ readme|safe }}
+    </body>
+</html>
+
