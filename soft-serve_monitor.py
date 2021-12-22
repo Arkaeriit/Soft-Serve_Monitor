@@ -132,7 +132,7 @@ def present_repo(repo_name):
 def webpage(rest=None):
     ssh_command = "ssh -p "+str(config["ss_port"])+ " "+config["ss_host"]
     repo_list, cmd_dic = repos_description()
-    return render_template("index.html", server_name = config["monitor_name"], ssh_command = ssh_command, repo_list = repo_list, cmd_dic = cmd_dic)
+    return render_template("index.html", server_name = config["monitor_name"], ssh_command = ssh_command, repo_list = repo_list)
 
 @app.errorhandler(404)
 def page_not_found(e):

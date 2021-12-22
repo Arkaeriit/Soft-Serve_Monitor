@@ -14,7 +14,7 @@
         <p>Here is a list of all the repositories in this server and the commands to clone them:</p>
         <ul>
         {% for repo in repo_list %}
-        <li>{{ repo }} → <code>{{ cmd_dic[repo] }}</code></li>
+        <li><a href="{{ repo }}">{{ repo }}</a></code></li>
         {% endfor %}
         </ul>
     </body>
