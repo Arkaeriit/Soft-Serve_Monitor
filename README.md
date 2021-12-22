@@ -33,8 +33,10 @@ An example is given as `config.json` in this repository.
 ## Running the server
 
 This server depends on the following python libraries:
+
 * Flask
 * markdown
+
 You need to install them before being able to run it.
 
 Running this server is as easy as running any other Flask server. I use the following systemd service to run it on [my personal server](https://git.bobignou.red).
