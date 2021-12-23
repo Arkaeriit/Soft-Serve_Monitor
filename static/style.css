@@ -1,3 +1,5 @@
+
+/* Defaut and page-wide config */
 body {
     font-family: 'IBM Plex Sans', sans-serif;
     background: #222831;
@@ -7,27 +9,32 @@ body {
     margin-right: 100px;
 }
 
+/* Stantard text */
 p {
     font-size: 1.2em;
 }
 
+/* Main titles */
 h1 {
     font-size: 2.5em;
     color: #FFD369;
 }
 
+/* Sub titles */
 h2 {
     font-size: 1.75;
     color: #C88E00;
     margin-left: 50px;
 }
 
+/* Sub-sub titles */
 h3 {
     font-size: 1.3em;
     color: #FFFFFFFF;
     margin-left: 50px;
 }
 
+/* Info box on top of the page */
 .clone_info {
     background: #202020;
     color: #888888;
@@ -36,10 +43,13 @@ h3 {
     border-radius: 0.5em;
 }
 
+/* Red error messages */
 .error_404 {
     color: #E02020;
+    font-size: 1.5em;
 }
 
+/* Code block or inline code */
 code {
     font-family: 'IBM Plex Mono', monospace;
     color: White;
@@ -49,25 +59,39 @@ code {
     padding: 0.2em;
 }
 
+/* Code block (not inline) */
+pre {
+    background: #393E46;
+    padding: 0.2em;
+    width: fit-content;
+    border-radius: 0.5em;
+}
+
+/* Tables */
 table {
     border-collapse: collapse;
     margin-right: 100px;
 }
 
+/* Cells in tables */
 th, td {
     border: 2px solid #C88E00;
     padding: 5px;
     text-align: left;
 }
 
+/* Unvisited links */
 a:link {
     color: #FFD369;
 }
 
+/* Visited links */
 a:visited {
     color: #B07500;
 }
 
+/* Link being clicked on */
 a:active {
     color: #F0F0F0F0;
 }
+
