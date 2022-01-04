@@ -1,6 +1,6 @@
 # Soft Serve monitor
 
-[Soft Sevre](https://github.com/charmbracelet/soft-serve) is a very nice git server. It offers a really nice TUI to browse the repositories on the server. Unfortunately, it does not offers a web interface. Here, I want to try to make a tiny web interface to present the git server and list the repositories there.
+[Soft Serve](https://github.com/charmbracelet/soft-serve) is a very nice git server. It offers a really nice TUI to browse the repositories on the server. Unfortunately, it does not offers a web interface. Here, I want to try to make a tiny web interface to present the git server and list the repositories there.
 
 I use this to give a web interface to my [personal Git server](https://git.bobignou.red).
 
