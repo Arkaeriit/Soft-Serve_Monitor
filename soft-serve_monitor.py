@@ -99,6 +99,7 @@ def get_file_in_repos(repo_name, filename):
     branch_cmd = os.popen(goto_repo + "git rev-parse --abbrev-ref HEAD 2> /dev/null")
     branch = branch_cmd.read().split("\n")[0]
     branch_cmd.close()
+    os.system(goto_repo + "git symbolic-ref HEAD refs/heads/"+branch)
     show_cmd = os.popen(goto_repo + "git show "+branch+":"+filename+" 2> /dev/null")
     content = show_cmd.read()
     exit_code = show_cmd.close()
