@@ -61,6 +61,7 @@ code {
 
 /* Code block (not inline) */
 pre {
+    font-family: 'IBM Plex Mono', monospace;
     background: #393E46;
     padding: 0.2em;
     width: fit-content;
